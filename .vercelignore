@@ -1,4 +1,6 @@
 server.js
+package.json
+package-lock.json
 *.zip
 solaris_src/
-.env.example
+.env*

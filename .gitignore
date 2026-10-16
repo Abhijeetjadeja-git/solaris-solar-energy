@@ -36,3 +36,6 @@ Thumbs.db
 # Raw archives and superseded extraction directories
 *.zip
 solaris_src/
+
+.vercel
+.env*
