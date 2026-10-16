@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solaris | Solar Energy Landing Page</title>
+    <meta name="description" content="Clean Energy that Pays for Itself. Next-generation photovoltaic solar solutions for homes and businesses." />
+    
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            },
+            colors: {
+              solar: {
+                50: '#fffbeb',
+                100: '#fef3c7',
+                400: '#fbbf24',
+                500: '#f59e0b',
+                600: '#d97706',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-[#070b12] text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-black overflow-x-hidden">
+    
+    <!-- Fixed Background Video Canvas (Scrubbed on Scroll) -->
+    <canvas id="animation-canvas"></canvas>
+
+    <!-- Ambient Vignette & Scrim for Optimal Contrast -->
+    <div class="video-overlay" aria-hidden="true"></div>
+
+    <!-- Floating Live HUD Overlay for Scrollytelling Video Highlights -->
+    <div id="video-hud" class="fixed bottom-10 left-8 z-20 pointer-events-none transition-all duration-700 opacity-0 transform translate-y-4">
+      <div class="glass-pill px-4 py-2 flex items-center gap-3 rounded-full text-xs font-medium tracking-wide text-slate-200 border border-white/15 bg-slate-900/70 backdrop-blur-xl shadow-2xl">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="hud-text">Photovoltaic Array • 32° Angle</span>
+        <span class="text-amber-400 font-mono text-[10px] bg-amber-400/10 px-2 py-0.5 rounded-full" id="hud-frame">FRAME 001</span>
+      </div>
+    </div>
+
+    <!-- Main Scrollytelling Content -->
+    <div class="content-wrapper relative z-10">
+
+      <!-- ================================================= -->
+      <!-- 1. HEADER / NAVIGATION                           -->
+      <!-- ================================================= -->
+      <header class="sticky top-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 backdrop-blur-xl bg-[#070b12]/75 border-b border-white/10 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+          <!-- Logo matching Dribbble shot -->
+          <a href="#" class="flex items-center gap-2.5 group">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:rotate-12 transition-transform">
+              <svg class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+              </svg>
+            </div>
+            <span class="text-2xl font-bold tracking-tight text-white flex items-center gap-1">
+              Solaris<span class="text-amber-500">.</span>
+            </span>
+          </a>
+
+          <!-- Nav Items matching Dribbble shot -->
+          <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+            <a href="#hero" class="hover:text-amber-400 transition-colors">Home</a>
+            <a href="#about" class="hover:text-amber-400 transition-colors">About</a>
+            <a href="#features" class="hover:text-amber-400 transition-colors">Features</a>
+            <a href="#lineup" class="hover:text-amber-400 transition-colors">Product</a>
+            <a href="#savings-steps" class="hover:text-amber-400 transition-colors">How it Works</a>
+            <a href="#calculator" class="hover:text-amber-400 transition-colors">Calculator</a>
+            <a href="#contact" class="hover:text-amber-400 transition-colors">FAQ</a>
+          </nav>
+
+          <!-- Contact Us Pill Button -->
+          <div class="flex items-center gap-4">
+            <a href="#contact" class="bg-white hover:bg-amber-400 text-black font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-white/10 hover:shadow-amber-500/25">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- ================================================= -->
+      <!-- 2. HERO SECTION                                   -->
+      <!-- ================================================= -->
+      <section id="hero" class="relative px-6 md:px-12 pt-12 pb-24 min-h-[92vh] flex items-center max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+          
+          <!-- Left Hero Column -->
+          <div class="lg:col-span-6 reveal-on-scroll">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-6">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              Autonomous Solar Technology
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-[68px] font-extrabold leading-[1.08] tracking-tight text-white">
+              Clean Energy that Pays for Itself
+            </h1>
+
+            <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
+              Our solutions are designed to maximize energy production, reduce electricity bills, and offer long-term value through durable components and intelligent system architecture.
+            </p>
+
+            <!-- 3 Feature Bullets matching Dribbble shot -->
+            <div class="mt-8 space-y-3.5">
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold">
+                  ✓
+                </div>
+                <span class="text-sm font-medium text-slate-200">Lower Your Electric Bills</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold">
+                  ✓
+                </div>
+                <span class="text-sm font-medium text-slate-200">Long-Term Reliability & Durability</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold">
+                  ✓
+                </div>
+                <span class="text-sm font-medium text-slate-200">Smart 24/7 Real-Time Energy Monitoring</span>
+              </div>
+            </div>
+
+            <div class="mt-10 flex flex-wrap gap-4 items-center">
+              <a href="#calculator" class="bg-white hover:bg-amber-400 text-black px-8 py-3.5 rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-white/10 hover:shadow-amber-500/30">
+                Estimate Savings
+              </a>
+              <a href="#about" class="glass-btn px-6 py-3.5 rounded-full text-sm font-medium text-slate-200 border border-white/20 hover:border-white/40 hover:bg-white/10 transition-all flex items-center gap-2">
+                <span>Explore Features</span>
+                <svg class="w-4 h-4 text-amber-400 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Hero Column: Large Visual Card with Solar Engineers + Floating Glass Card -->
+          <div class="lg:col-span-6 relative reveal-on-scroll delay-200">
+            <div class="relative rounded-3xl overflow-hidden border border-white/15 bg-slate-900/40 backdrop-blur-md shadow-2xl group">
+              <!-- Hero Photo (Two Solar Engineers with Tablet & Wind Turbines) matching Dribbble Shot 5 -->
+              <div class="h-96 sm:h-[460px] w-full overflow-hidden relative">
+                <img 
+                  src="images/hero_engineers.jpg" 
+                  alt="Solar Engineers inspecting renewable array" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-95" 
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#070b12] via-transparent to-black/30"></div>
+                
+                <!-- Tag on Top Right -->
+                <div class="absolute top-5 right-5">
+                  <div class="glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-white bg-black/40 backdrop-blur-md border border-white/20 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    Live Generating
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Sub-card: "How Solar Cuts Your Bills" matching Dribbble shot 5 -->
+              <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-[#0f172a]/90 backdrop-blur-xl border border-white/15 shadow-2xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 border border-amber-500/30 relative">
+                    <img src="frames/frame_000045.jpg" alt="Preview" class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-xs">⚡</div>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">How Solar Cuts Your Bills</h4>
+                    <p class="text-xs text-slate-400">Discover how modern solar scales down your electricity cost</p>
+                  </div>
+                </div>
+                <a href="#savings-steps" class="bg-white/15 hover:bg-white text-white hover:text-black text-xs font-semibold px-4 py-2 rounded-full transition-all flex-shrink-0">
+                  Read More
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 3. SCROLLYTELLING INTERACTIVE SHOWCASE (Pinned)   -->
+      <!-- ================================================= -->
+      <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="p-8 md:p-12 rounded-3xl bg-slate-900/50 backdrop-blur-2xl border border-white/10 shadow-2xl reveal-on-scroll">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">• Cinematic Scrollytelling •</span>
+              <h3 class="text-2xl sm:text-3xl font-bold text-white mt-1">
+                Precision Aerial Inspection Across 300 Frames
+              </h3>
+            </div>
+            <div class="text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              Scroll down to scrub camera angle
+            </div>
+          </div>
+
+          <!-- Interactive Micro HUD Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all">
+              <div class="text-amber-400 text-xs font-semibold uppercase tracking-wider">Absorption Field</div>
+              <div class="text-xl font-bold text-white mt-1">99.4% Light Capture</div>
+              <p class="text-xs text-slate-400 mt-2">Bifacial cells absorb dual-sided ambient reflection from terrain.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all">
+              <div class="text-emerald-400 text-xs font-semibold uppercase tracking-wider">System Lifespan</div>
+              <div class="text-xl font-bold text-white mt-1">30+ Year Architecture</div>
+              <p class="text-xs text-slate-400 mt-2">Corrosion-resistant anodized aluminum mounting frames.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all">
+              <div class="text-cyan-400 text-xs font-semibold uppercase tracking-wider">Grid Autonomous</div>
+              <div class="text-xl font-bold text-white mt-1">&lt; 10ms Switchover</div>
+              <p class="text-xs text-slate-400 mt-2">Instant blackout protection through smart inverter syncing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 4. ABOUT & STATS SECTION                          -->
+      <!-- ================================================= -->
+      <section id="about" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
+        <div class="p-8 md:p-14 rounded-3xl bg-[#0b121e]/80 backdrop-blur-2xl border border-white/10 shadow-2xl">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Left statement matching Dribbble shot 5 -->
+            <div class="lg:col-span-6 reveal-on-scroll">
+              <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 mb-3">
+                • About Us •
+              </div>
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-snug">
+                We build reliable and efficient solar systems for homes and businesses. With advanced photovoltaic technology, we help people transition into affordable renewable power without complexity.
+              </h2>
+              <p class="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed">
+                Our solutions are designed to maximize energy production, reduce electricity bills, and offer long-term value through durable components and intelligent system architecture.
+              </p>
+            </div>
+
+            <!-- Right 4 Stat Cards matching Dribbble shot 5 -->
+            <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6 reveal-on-scroll delay-100">
+              <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/30 transition-all hover:-translate-y-1 group">
+                <div class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-amber-400 transition-colors">98%</div>
+                <div class="mt-2 text-xs sm:text-sm font-medium text-slate-400">Customer satisfaction</div>
+              </div>
+
+              <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/30 transition-all hover:-translate-y-1 group">
+                <div class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-amber-400 transition-colors">40%</div>
+                <div class="mt-2 text-xs sm:text-sm font-medium text-slate-400">Faster Installation</div>
+              </div>
+
+              <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/30 transition-all hover:-translate-y-1 group">
+                <div class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-amber-400 transition-colors">60%</div>
+                <div class="mt-2 text-xs sm:text-sm font-medium text-slate-400">Lower Energy Costs</div>
+              </div>
+
+              <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/30 transition-all hover:-translate-y-1 group">
+                <div class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight group-hover:text-amber-400 transition-colors">25</div>
+                <div class="mt-2 text-xs sm:text-sm font-medium text-slate-400">Years System Lifespan</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 5. FEATURES: Powerful Features. Real Impact.       -->
+      <!-- ================================================= -->
+      <section id="features" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
+        <div class="p-8 md:p-14 rounded-3xl bg-[#0b121e]/85 backdrop-blur-2xl border border-white/10 shadow-2xl">
+          
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 reveal-on-scroll">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">• Core Engineering •</span>
+              <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">
+                Powerful Features. Real Impact.
+              </h2>
+            </div>
+            <p class="text-sm text-slate-400 max-w-md">
+              Cutting-edge hardware paired with AI-driven energy optimization software.
+            </p>
+          </div>
+
+          <!-- 4 Cards matching Dribbble shot & template -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 reveal-on-scroll">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl mb-6 border border-amber-500/30">
+                ☀️
+              </div>
+              <h3 class="text-lg font-bold text-white">High Efficiency Photovoltaic Cells</h3>
+              <p class="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                More power from every ray of sunlight with multi-junction silicon layers.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 reveal-on-scroll delay-100">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl mb-6 border border-amber-500/30">
+                🔋
+              </div>
+              <h3 class="text-lg font-bold text-white">Energy Storage Ready</h3>
+              <p class="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Seamlessly connects with home battery systems for zero-interruption power.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 reveal-on-scroll delay-200">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl mb-6 border border-amber-500/30">
+                🧠
+              </div>
+              <h3 class="text-lg font-bold text-white">Smart Inverter Tech</h3>
+              <p class="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Reliable energy output with rapid peak-load voltage regulation.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-400/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 reveal-on-scroll delay-300">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl mb-6 border border-amber-500/30">
+                🌱
+              </div>
+              <h3 class="text-lg font-bold text-white">Eco-Friendly Materials</h3>
+              <p class="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Fully sustainable, lead-free circular manufacturing lifecycle.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 6. PRODUCT INNOVATION LINEUP                      -->
+      <!-- ================================================= -->
+      <section id="lineup" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
+        <div class="p-8 md:p-14 rounded-3xl bg-[#0b121e]/85 backdrop-blur-2xl border border-white/10 shadow-2xl">
+          
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 reveal-on-scroll">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">• Catalog •</span>
+              <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">
+                Our Latest Solar Innovation Lineup
+              </h2>
+            </div>
+            
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap gap-2 text-xs font-medium">
+              <button class="px-4 py-2 rounded-full bg-white text-black font-semibold shadow-md">All Products</button>
+              <button class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 transition-colors">Monocrystalline</button>
+              <button class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 transition-colors">Inverters</button>
+              <button class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 transition-colors">Storage</button>
+            </div>
+          </div>
+
+          <!-- 6 Product Cards using local high-resolution solar frames -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            
+            <div class="rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all duration-500 group reveal-on-scroll">
+              <div class="h-56 overflow-hidden relative">
+                <img 
+                  src="frames/frame_000030.jpg" 
+                  alt="Solaris Vertex Pro 550W" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold">
+                  Bifacial 550W
+                </span>
+              </div>
+              <div class="p-5">
+                <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Solaris Vertex Pro</h4>
+                <p class="text-xs text-slate-400 mt-1">Ultra-high density solar module with dual-glass durability.</p>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-semibold">22.8% Efficiency</span>
+                  <span class="text-amber-400 font-medium hover:underline cursor-pointer">View Specs →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all duration-500 group reveal-on-scroll delay-100">
+              <div class="h-56 overflow-hidden relative">
+                <img 
+                  src="frames/frame_000085.jpg" 
+                  alt="Solaris Commercial Array" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold">
+                  Industrial Tier-1
+                </span>
+              </div>
+              <div class="p-5">
+                <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Commercial Scale Array</h4>
+                <p class="text-xs text-slate-400 mt-1">Engineered for large rooftop installations and solar carports.</p>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-semibold">Heavy Duty IP68</span>
+                  <span class="text-amber-400 font-medium hover:underline cursor-pointer">View Specs →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all duration-500 group reveal-on-scroll delay-200">
+              <div class="h-56 overflow-hidden relative">
+                <img 
+                  src="frames/frame_000140.jpg" 
+                  alt="Solaris Aurora Smart Inverter" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold">
+                  Hybrid 10kW
+                </span>
+              </div>
+              <div class="p-5">
+                <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Aurora Smart Inverter</h4>
+                <p class="text-xs text-slate-400 mt-1">AI-assisted MPPT tracking with integrated rapid emergency shutdown.</p>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-semibold">99.1% Euro Efficiency</span>
+                  <span class="text-amber-400 font-medium hover:underline cursor-pointer">View Specs →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all duration-500 group reveal-on-scroll">
+              <div class="h-56 overflow-hidden relative">
+                <img 
+                  src="frames/frame_000195.jpg" 
+                  alt="Solaris PowerWall Battery" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold">
+                  LiFePO4 15kWh
+                </span>
+              </div>
+              <div class="p-5">
+                <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Solaris SafeVault Battery</h4>
+                <p class="text-xs text-slate-400 mt-1">Modular battery storage system providing 48h emergency backup.</p>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-semibold">6,000+ Cycles</span>
+                  <span class="text-amber-400 font-medium hover:underline cursor-pointer">View Specs →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all duration-500 group reveal-on-scroll delay-100">
+              <div class="h-56 overflow-hidden relative">
+                <img 
+                  src="frames/frame_000245.jpg" 
+                  alt="Solaris All-Black Aesthetic Panel" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold">
+                  Pure Black Edition
+                </span>
+              </div>
+              <div class="p-5">
+                <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Solaris Sleek Black 430W</h4>
+                <p class="text-xs text-slate-400 mt-1">Architectural seamless all-black design crafted for luxury residential roofs.</p>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-semibold">Aesthetic Seamless</span>
+                  <span class="text-amber-400 font-medium hover:underline cursor-pointer">View Specs →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all duration-500 group reveal-on-scroll delay-200">
+              <div class="h-56 overflow-hidden relative">
+                <img 
+                  src="frames/frame_000295.jpg" 
+                  alt="Solaris Smart Gateway Controller" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <span class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-amber-400 border border-white/15 px-3 py-1 rounded-full text-[11px] font-semibold">
+                  IoT Gateway
+                </span>
+              </div>
+              <div class="p-5">
+                <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Solaris Cloud Hub</h4>
+                <p class="text-xs text-slate-400 mt-1">Live smartphone telemetry, weather auto-adjustment, and grid arbitrage.</p>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-semibold">5G / WiFi Mesh</span>
+                  <span class="text-amber-400 font-medium hover:underline cursor-pointer">View Specs →</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 7. TURNING SUNLIGHT INTO SAVINGS (4 Steps + Card) -->
+      <!-- ================================================= -->
+      <section id="savings-steps" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
+        <div class="p-8 md:p-14 rounded-3xl bg-[#0b121e]/85 backdrop-blur-2xl border border-white/10 shadow-2xl">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left: 4 Steps matching Dribbble shot 5 -->
+            <div class="lg:col-span-6 reveal-on-scroll">
+              <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">• How it Works •</span>
+              <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-1">
+                Turning Sunlight into Savings
+              </h2>
+              <p class="mt-3 text-slate-300 text-sm">
+                From satellite 3D roof analysis to grid connection in under 2 weeks.
+              </p>
+
+              <!-- 4 Step Interactive Accordion -->
+              <div class="mt-8 space-y-4">
+                
+                <div class="step-card active p-5 rounded-2xl bg-white/10 border border-amber-400/40 transition-all cursor-pointer" onclick="activateStep(1)">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <span class="w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm">1</span>
+                      <h4 class="text-base font-bold text-white">Discover Your Solar Potential</h4>
+                    </div>
+                    <span class="text-amber-400 text-lg">↓</span>
+                  </div>
+                  <p class="mt-3 text-xs sm:text-sm text-slate-300 pl-11">
+                    We calculate exact sun exposure, shadow angles, and historical weather data for your specific rooftop address.
+                  </p>
+                </div>
+
+                <div class="step-card p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/25 transition-all cursor-pointer" onclick="activateStep(2)">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <span class="w-8 h-8 rounded-full bg-white/10 text-slate-300 font-bold flex items-center justify-center text-sm">2</span>
+                      <h4 class="text-base font-bold text-slate-200">Tailored Systems, Built Around You</h4>
+                    </div>
+                    <span class="text-slate-400 text-lg">→</span>
+                  </div>
+                  <p class="mt-3 text-xs sm:text-sm text-slate-300 pl-11 hidden">
+                    Custom electrical architectural blueprints matching your family's kilowatt peak consumption patterns.
+                  </p>
+                </div>
+
+                <div class="step-card p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/25 transition-all cursor-pointer" onclick="activateStep(3)">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <span class="w-8 h-8 rounded-full bg-white/10 text-slate-300 font-bold flex items-center justify-center text-sm">3</span>
+                      <h4 class="text-base font-bold text-slate-200">Installed in Days, Built for Decades</h4>
+                    </div>
+                    <span class="text-slate-400 text-lg">→</span>
+                  </div>
+                  <p class="mt-3 text-xs sm:text-sm text-slate-300 pl-11 hidden">
+                    Certified master electricians handle municipal permitting, racking, and panel placement in 2 business days.
+                  </p>
+                </div>
+
+                <div class="step-card p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/25 transition-all cursor-pointer" onclick="activateStep(4)">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <span class="w-8 h-8 rounded-full bg-white/10 text-slate-300 font-bold flex items-center justify-center text-sm">4</span>
+                      <h4 class="text-base font-bold text-slate-200">The Sun Goes to Work, You Start Saving</h4>
+                    </div>
+                    <span class="text-slate-400 text-lg">→</span>
+                  </div>
+                  <p class="mt-3 text-xs sm:text-sm text-slate-300 pl-11 hidden">
+                    Flip the master switch, monitor live generation on your phone, and watch your utility meter spin backwards.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right: Visual Card with Solar Worker Looking up at the Sun matching Dribbble shot 5 -->
+            <div class="lg:col-span-6 reveal-on-scroll delay-200">
+              <div class="relative rounded-3xl overflow-hidden border border-white/15 bg-slate-900/40 backdrop-blur-md shadow-2xl h-[480px]">
+                <img 
+                  src="images/savings_technician.jpg" 
+                  alt="Solar Engineer overlooking field of solar panels" 
+                  class="w-full h-full object-cover brightness-90 hover:scale-105 transition-transform duration-700" 
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#070b12] via-transparent to-black/20"></div>
+
+                <!-- Overlay Card matching Dribbble shot 5 -->
+                <div class="absolute bottom-8 left-8 right-8 p-6 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/20 text-center">
+                  <div class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-semibold mb-2">
+                    Turnkey Installation
+                  </div>
+                  <h3 class="text-xl font-bold text-white">From Sunlight to Savings</h3>
+                  <p class="text-xs text-slate-300 mt-1">In 4 Simple, Stress-Free Steps</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 8. INTERACTIVE SOLAR CALCULATOR & CONTACT         -->
+      <!-- ================================================= -->
+      <section id="calculator" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Interactive ROI Calculator Card -->
+          <div class="lg:col-span-5 p-8 rounded-3xl bg-[#0b121e]/90 backdrop-blur-2xl border border-white/10 shadow-2xl reveal-on-scroll">
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">• Interactive Estimator •</span>
+            <h3 class="text-2xl font-bold text-white mt-1">Calculate Your Solar Return</h3>
+            <p class="text-xs text-slate-400 mt-2">Adjust your current monthly electricity bill to project long-term financial yield.</p>
+
+            <div class="mt-8">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-semibold text-slate-300">Current Monthly Bill:</span>
+                <span class="text-2xl font-extrabold text-amber-400" id="bill-display">$220/mo</span>
+              </div>
+              <input 
+                type="range" 
+                id="bill-slider" 
+                min="50" 
+                max="600" 
+                value="220" 
+                step="10"
+                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500"
+              />
+              <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>$50</span>
+                <span>$300</span>
+                <span>$600+</span>
+              </div>
+            </div>
+
+            <!-- Live Calculation Output Metrics -->
+            <div class="grid grid-cols-2 gap-4 mt-8">
+              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-[11px] text-slate-400">25-Year Net Savings</div>
+                <div class="text-2xl font-extrabold text-emerald-400 mt-1" id="savings-display">$42,800</div>
+              </div>
+              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-[11px] text-slate-400">Recommended System</div>
+                <div class="text-2xl font-extrabold text-white mt-1" id="system-display">8.4 kW</div>
+              </div>
+              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-[11px] text-slate-400">Estimated Payback</div>
+                <div class="text-2xl font-extrabold text-white mt-1" id="payback-display">5.2 Yrs</div>
+              </div>
+              <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-[11px] text-slate-400">CO2 Emissions Cut</div>
+                <div class="text-2xl font-extrabold text-amber-400 mt-1" id="co2-display">145 Tons</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form Component matching template & Dribbble shot -->
+          <div id="contact" class="lg:col-span-7 p-8 md:p-12 rounded-3xl bg-[#0b121e]/90 backdrop-blur-2xl border border-white/10 shadow-2xl reveal-on-scroll delay-100">
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">• Get in Touch •</span>
+            <h2 class="text-3xl font-bold tracking-tight text-white mt-1">Contact Us</h2>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 mb-8">
+              Speak directly with our senior renewable engineers. We'll design a complimentary 3D satellite solar layout for your property.
+            </p>
+
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Your solar consultation has been scheduled. One of our engineers will contact you shortly.');">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1.5">Full Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Abhijit Sharma" 
+                    required 
+                    class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-sm transition-all"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1.5">Email Address</label>
+                  <input 
+                    type="email" 
+                    placeholder="abhijit@example.com" 
+                    required 
+                    class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-sm transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5">Installation Property Type</label>
+                <select class="w-full px-4 py-3 rounded-xl bg-[#0f172a] border border-white/10 text-slate-200 focus:outline-none focus:border-amber-400 text-sm transition-all">
+                  <option>Residential Single Family Home</option>
+                  <option>Commercial Office / Warehouse</option>
+                  <option>Industrial Plant / Farm</option>
+                  <option>Multi-Unit Residential</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5">Your Message</label>
+                <textarea 
+                  rows="3" 
+                  placeholder="Tell us about your rooftop or target energy goals..." 
+                  required
+                  class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-sm transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                class="w-full sm:w-auto bg-white hover:bg-amber-400 text-black font-bold px-8 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-white/10 hover:shadow-amber-500/25 text-sm"
+              >
+                Submit Consultation Request
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================= -->
+      <!-- 9. FOOTER                                         -->
+      <!-- ================================================= -->
+      <footer class="mt-16 border-t border-white/10 bg-[#04070d]/90 backdrop-blur-xl py-12 px-6 md:px-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-bold tracking-tight text-white">Solaris<span class="text-amber-500">.</span></span>
+            <span class="text-slate-600">|</span>
+            <span>Clean Energy that Pays for Itself</span>
+          </div>
+
+          <div class="flex gap-6 text-slate-400">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" class="hover:text-white transition-colors">Engineering Docs</a>
+            <a href="#" class="hover:text-white transition-colors">System Telemetry</a>
+          </div>
+
+          <div>
+            © 2026 Solaris Renewable Systems. Dynamic Scrollytelling Experience.
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+  </body>
+</html>

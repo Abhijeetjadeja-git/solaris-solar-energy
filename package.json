@@ -1,0 +1,25 @@
+{
+  "name": "solaris-solar-energy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Solaris - High-performance interactive scroll-based solar energy landing page with 300-frame video scrollytelling",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node -e \"console.log('Build complete - static assets ready for deployment.')\""
+  },
+  "keywords": [
+    "solar",
+    "renewable-energy",
+    "scrollytelling",
+    "canvas-animation",
+    "landing-page",
+    "clean-tech"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
