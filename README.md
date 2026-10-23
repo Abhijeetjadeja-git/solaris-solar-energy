@@ -165,7 +165,7 @@ GitHub Repository: Pending repository creation.
 ---
 
 ## 17. Live Website URL Placeholder
-Live Website: Pending Vercel deployment.
+Live Website: https://solaris-solar-energy.vercel.app/
 
 ---
 
